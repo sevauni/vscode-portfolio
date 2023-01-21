@@ -5,11 +5,14 @@ import React from 'react';
 import Editor from "@monaco-editor/react";
 import code from './components/Code/Code';
 
-const texting = code();
+let textCode = code("about");
 
 
 
 const App = () => {
+
+
+
   return (
     <div className='container container-closed'>
       <SideBar />
@@ -19,15 +22,9 @@ const App = () => {
           height="100%"
           //defaultLanguage="javascript"
           theme="vs-dark"
-          defaultValue={texting}
+          value={textCode}
           onChange={e => { //console.log(e)
            }}
-           options= {{
-
-
-           }
-
-           }
         />
       </div>
       <div className="footer">

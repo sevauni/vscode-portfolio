@@ -1,5 +1,6 @@
 
 const Code = (textType) => {
+
 const main = `
 ██╗   ██╗███████╗███████╗██╗   ██╗ ██████╗ ██╗      ██████╗ ██████╗ 
 ██║   ██║██╔════╝██╔════╝██║   ██║██╔═══██╗██║     ██╔═══██╗██╔══██╗
@@ -33,14 +34,30 @@ to the growth of a high-tech company in Israel.
 ║ • Linux      ║
 ╚══════════════╝
 
-
 `
-const about = ''
+const about =`
+Contacts:
 
 
+LinkedIn
+https://www.linkedin.com/in/vsevolod-usyskin-354872253/
 
 
-    return main;
+Github:
+https://github.com/sevauni
+
+
+This Website:
+https://vsevolod.tech
+`
+
+
+if(textType === 'about'){
+    return about;
+}
+
+return main;
+    
 };
 
 export default Code;
