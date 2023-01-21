@@ -1,0 +1,38 @@
+.container {
+  display: grid;
+  height: 100vh;
+  grid-template-rows: 1fr minmax(20px, 3%);
+  grid-template-columns: minmax(60px, 4rem) minmax(60px, 15rem) 4fr;
+  grid-template-areas:
+    "sidebar folder code"
+    "footer footer footer";
+}
+
+.container-closed {
+  grid-template-areas:
+    "sidebar code code"
+    "footer footer footer";
+}
+
+//grid-template-columns: minmax(100px, 1fr);
+
+.footer {
+  grid-area: footer;
+  background-color: #007acc;
+}
+
+.folder {
+  grid-area: folder;
+  background-color: green;
+}
+
+.code {
+  grid-area: code;
+  background-color: #1e1e1e;
+}
+
+
+.a-no-style {
+    text-decoration: inherit;
+    color: inherit;
+}
