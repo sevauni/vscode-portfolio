@@ -5,29 +5,56 @@ import React, { Component } from 'react';
 import Editor from "@monaco-editor/react";
 import code from './components/Code/Code';
 
+import ImageGallery from 'react-image-gallery';
+
+const images = [
+  {
+    original: 'https://picsum.photos/id/1018/1000/600/',
+    thumbnail: 'https://picsum.photos/id/1018/250/150/',
+
+  },
+  {
+    original: 'https://picsum.photos/id/1015/1000/600/',
+    thumbnail: 'https://picsum.photos/id/1015/250/150/',
+
+  },
+  {
+    original: 'https://picsum.photos/id/1019/1000/600/',
+    thumbnail: 'https://picsum.photos/id/1019/250/150/',
+
+  },
+];
 
 
 class App extends Component {
 
   state = {
     textValue: 'main',
-    menuId: 'icon-code'
+    menuId: 'icon-code',
+    showEditor: true
   }
-
 
   onMenuChange = (id) => {
 
-    
+
     if (id === this.state.menuId) return;
     if (id === 'icon-code') {
       this.setState({
         textValue: 'main',
-        menuId: id
+        menuId: id,
+        showEditor: true
       });
     }
     if (id === 'icon-contacts') {
       this.setState({
         textValue: 'about',
+        menuId: id,
+        showEditor: true
+      });
+    }
+    if (id === 'icon-folder') {
+      this.setState({
+        showEditor: false,
         menuId: id
       });
     }
@@ -35,25 +62,54 @@ class App extends Component {
 
   }
 
+  renderEditor(shouldRender, text) {
+    if (shouldRender) {
+      const textCode = code(text);
+      return (
+        <Editor
+          height="100%"
+          width="100%"
+          options={{wordWrap: 'on'}}
+          loading="Loading Code Editor" //крутая анимация
+          theme="vs-dark"
+          value={textCode}
+          onChange={e => {
+            console.log(e)
+          }}
+        />
+      )
+    } else {
+      return null;
+    }
+  }
+
+  renderSlideShow(shouldRender) {
+    if (!shouldRender) {
+      return (
+        <div className='height'>
+          <ImageGallery items={images} />
+        </div>
+      )
+    } else {
+      return null;
+    }
+  }
+
+
   render() {
 
-    const { textValue } = this.state;
+    const { textValue, showEditor } = this.state;
 
-    const  textCode = code(textValue);
-    
+
+    const editor = this.renderEditor(showEditor, textValue);
+    const slideShow = this.renderSlideShow(showEditor);
     return (
       <div className='container container-closed'>
-        <SideBar onMenuChange = {this.onMenuChange}/>
+        <SideBar onMenuChange={this.onMenuChange} />
         <div className="folder"></div>
         <div className="code">
-          <Editor
-            height="100%"
-            //defaultLanguage="javascript"
-            theme="vs-dark"
-            value={textCode}
-            onChange={e => { //console.log(e)
-            }}
-          />
+          {editor}
+          {slideShow}
         </div>
         <div className="footer">
           <a href="ya.ru" className='a-no-style'>
