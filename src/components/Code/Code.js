@@ -56,7 +56,9 @@ if(textType === 'about'){
     return about;
 }
 
-return main;
+if(textType === 'main'){
+    return main;
+}
     
 };
 

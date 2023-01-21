@@ -18,7 +18,6 @@ class SideBar extends Component {
 
 
     onChangeSelect = (key) => {
-
         const value = key.target.className.split(" ", 1)[0];
         const { selectedMenuItem } = this.state;
         if (value === selectedMenuItem) return;
@@ -41,7 +40,7 @@ class SideBar extends Component {
         this.setState({
             selectedMenuItem: value
         });
-
+        this.props.onMenuChange(value);
     }
 
 
