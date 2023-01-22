@@ -1,15 +1,10 @@
 
-const Code = (textType) => {
+const Code = (textType, width) => {
 
-const main = `
-██╗   ██╗███████╗███████╗██╗   ██╗ ██████╗ ██╗      ██████╗ ██████╗ 
-██║   ██║██╔════╝██╔════╝██║   ██║██╔═══██╗██║     ██╔═══██╗██╔══██╗
-██║   ██║███████╗█████╗  ██║   ██║██║   ██║██║     ██║   ██║██║  ██║
-╚██╗ ██╔╝╚════██║██╔══╝  ╚██╗ ██╔╝██║   ██║██║     ██║   ██║██║  ██║
- ╚████╔╝ ███████║███████╗ ╚████╔╝ ╚██████╔╝███████╗╚██████╔╝██████╔╝
-  ╚═══╝  ╚══════╝╚══════╝  ╚═══╝   ╚═════╝ ╚══════╝ ╚═════╝ ╚═════╝ 
-                                                                    
-    FullStack Developer JavaScript
+    const deviceType = width > 800 ? 'desktop' : 'mobile';
+
+    const main = `                                     
+    JavaScript FullStack Developer
 
 
     I am a Junior Frontend Developer seeking employment in the Israeli high-tech industry.
@@ -35,16 +30,52 @@ to the growth of a high-tech company in Israel.
 ╚══════════════╝
 
 `
-const about =`
-██████╗ ██████╗ ███╗   ██╗████████╗ █████╗  ██████╗████████╗███████╗
-██╔════╝██╔═══██╗████╗  ██║╚══██╔══╝██╔══██╗██╔════╝╚══██╔══╝██╔════╝
-██║     ██║   ██║██╔██╗ ██║   ██║   ███████║██║        ██║   ███████╗
-██║     ██║   ██║██║╚██╗██║   ██║   ██╔══██║██║        ██║   ╚════██║
-╚██████╗╚██████╔╝██║ ╚████║   ██║   ██║  ██║╚██████╗   ██║   ███████║
- ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝   ╚═╝   ╚══════╝
-                                                                     
+
+    const mainName = (type) => {
+        if (type === 'desktop') {
+            return `
+            
+    ██╗   ██╗███████╗███████╗██╗   ██╗ ██████╗ ██╗      ██████╗ ██████╗ 
+    ██║   ██║██╔════╝██╔════╝██║   ██║██╔═══██╗██║     ██╔═══██╗██╔══██╗
+    ██║   ██║███████╗█████╗  ██║   ██║██║   ██║██║     ██║   ██║██║  ██║
+    ╚██╗ ██╔╝╚════██║██╔══╝  ╚██╗ ██╔╝██║   ██║██║     ██║   ██║██║  ██║
+     ╚████╔╝ ███████║███████╗ ╚████╔╝ ╚██████╔╝███████╗╚██████╔╝██████╔╝
+      ╚═══╝  ╚══════╝╚══════╝  ╚═══╝   ╚═════╝ ╚══════╝ ╚═════╝ ╚═════╝ 
+
+            `;
+        } else {
+            return `
+            
+            
+    Vsevolod
+            `;
+        }
+    }
 
 
+    const aboutTitle = (type) => {
+        if (type === 'desktop') {
+            return `
+
+    ██████╗ ██████╗  ███╗   ██╗████████╗ █████╗  ██████╗████████╗███████╗
+    ██╔════╝██╔═══██╗████╗  ██║╚══██╔══╝██╔══██╗██╔════╝╚══██╔══╝██╔════╝
+    ██║     ██║   ██║██╔██╗ ██║   ██║   ███████║██║        ██║   ███████╗
+    ██║     ██║   ██║██║╚██╗██║   ██║   ██╔══██║██║        ██║   ╚════██║
+    ╚██████╗╚██████╔╝██║ ╚████║   ██║   ██║  ██║╚██████╗   ██║   ███████║
+     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝   ╚═╝   ╚══════╝
+                                                                                 
+            
+            `;
+        } else {
+            return `          
+            
+Contacts:
+            `;
+        }
+    }
+
+
+    const about = `
 LinkedIn
 https://www.linkedin.com/in/vsevolod-usyskin-354872253/
 
@@ -56,26 +87,20 @@ https://github.com/sevauni
 This Website:
 https://vsevolod.tech
 `
-const projectMain = `
-This is general description of the project
-`
 
 
 
+    if (textType === 'about') {
+        return (aboutTitle(deviceType) + about);
+    }
 
-if(textType === 'about'){
-    return about;
-}
+    if (textType === 'main') {
+        return (mainName(deviceType) + main);
+    }
 
-if(textType === 'main'){
-    return main;
-}
 
-if(textType === 'proj'){
-    return projectMain;
-}
+    return null;
 
-    
 };
 
 export default Code;

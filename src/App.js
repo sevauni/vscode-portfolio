@@ -12,6 +12,7 @@ import Cards from './components/Cards/Cards'
 import ReactLoading from 'react-loading';
 
 import { useRef } from 'react';
+import { width } from '@mui/system';
 
 
 
@@ -20,6 +21,7 @@ class App extends Component {
   state = {
     textValue: 'main',
     menuId: 'icon-code',
+    width: window.innerWidth,
   }
 
   onMenuChange = (id) => {
@@ -50,9 +52,9 @@ class App extends Component {
 
   }
 
-  renderEditor(shouldRender, text) {
+  renderEditor(shouldRender, text, width) {
     if (shouldRender) {
-      const textCode = code(text);
+      const textCode = code(text, width);
       return (
         <Editor
           height='100%'
@@ -71,15 +73,24 @@ class App extends Component {
     }
   }
 
-  renderCodeWindow(input, textValue) {
+  renderCodeWindow(input, textValue,width) {
     if (input === 'icon-folder') {
       return this.renderProjectList();
     } else {
-      return this.renderEditor(true, textValue);
+      return this.renderEditor(true, textValue,width);
     }
   }
 
+  updateDimensions = () => {
+    this.setState({ width: window.innerWidth });
+  };
 
+  componentDidMount() {
+    window.addEventListener('resize', this.updateDimensions);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimensions);
+  }
   renderProjectList() {
     return (
       <div className="gallery">
@@ -89,9 +100,8 @@ class App extends Component {
   }
   render() {
 
-    const { textValue, menuId } = this.state;
-    const codeWindow = this.renderCodeWindow(menuId, textValue,);
-    console.log(window.innerWidth, window.innerHeight);
+    const { textValue, menuId, width } = this.state;
+    const codeWindow = this.renderCodeWindow(menuId, textValue,width);
 
     return (
       <div className='container container-hide-code'>
@@ -99,7 +109,6 @@ class App extends Component {
         <div className="folder"></div>
         <div className="code">
           {codeWindow}
-
         </div>
         <div className="footer">
         </div>
@@ -107,6 +116,14 @@ class App extends Component {
     );
   };
 }
+
+
+
+
+
+
+
+
 
 export default App;
 
