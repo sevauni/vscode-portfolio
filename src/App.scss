@@ -1,20 +1,18 @@
-@import "~react-image-gallery/styles/scss/image-gallery.scss";
-
 .container {
   display: grid;
   height: 100vh;
-  grid-template-rows: 1fr minmax(20px, 3%);
+  grid-template-rows: 1fr  minmax(20px, 3%);
   grid-template-columns: minmax(60px, 4rem) minmax(60px, 15rem) 4fr;
-  grid-template-areas:
-    "sidebar folder code"
-    "footer footer footer";
-}
-
-.container-closed {
   grid-template-areas:
     "sidebar code code"
     "footer footer footer";
 }
+
+// .container-hide-code {
+//   grid-template-areas:
+//     "sidebar gallery gallery"
+//     "footer footer footer";
+// }
 
 //grid-template-columns: minmax(100px, 1fr);
 
@@ -33,43 +31,12 @@
   background-color: #1e1e1e;
 }
 
-
-.a-no-style {
-  text-decoration: inherit;
-  color: inherit;
-}
-
-
-
-
-.project-gallery-flex-wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch; //vertically
-  align-items: center;
-  gap: 5%;
-}
-
-
-.code-editor {
-  flex: 1 0 30vh;
-  width: 100%;
-  background-color: darkgreen;
-}
-
-
-.project-gallery {
-  height: 40%;
-  width: 300px;
-  background-color: darkblue;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10%;
-}
-
-.project-gallery-elem {
-
+.gallery {
+  height: 100%;
   background-color: #1e1e1e;
+  display: flex;
+  align-items: center;
+  justify-content:space-around;
+  gap: 2rem;
+  flex-wrap: wrap;
 }

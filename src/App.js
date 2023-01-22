@@ -1,18 +1,17 @@
+
+
 import './App.scss'
+
 
 import SideBar from './components/SideBar/SideBar';
 import React, { Component } from 'react';
 import Editor from "@monaco-editor/react";
 import code from './components/Code/Code';
 
-import Carousel from 'nuka-carousel';
+import Cards from './components/Cards/Cards'
+import ReactLoading from 'react-loading';
 
-
-import slideImg1 from './imgs/img (1).png'
-import slideImg2 from './imgs/img (2).png'
-import slideImg3 from './imgs/img (3).png'
-import slideImg4 from './imgs/img (4).png'
-
+import { useRef } from 'react';
 
 
 
@@ -59,11 +58,11 @@ class App extends Component {
           height='100%'
           width="100%"
           options={{ wordWrap: 'on' }}
-          loading="Loading Code Editor" //крутая анимация
+          loading={<ReactLoading type='bars' color='#ffffde' height={300} width={150} />}
           theme="vs-dark"
           value={textCode}
           onChange={e => {
-            console.log(e)
+            //console.log(e)
           }}
         />
       )
@@ -72,50 +71,35 @@ class App extends Component {
     }
   }
 
-  renderSlideShow(shouldRender) {
-    if (shouldRender) {
-      return (
-          <Carousel className='project-gallery-elem' cellAlign='center'>
-            <div>
-            <img src={slideImg1} alt="t" height='200px' />
-            </div>
-            <div>
-            <img src={slideImg1} alt="t" height='200px' />
-            </div>
-            <div>
-            <img src={slideImg1} alt="t" height='200px' />
-            </div>
-            <div>
-            <img src={slideImg1} alt="t" height='200px' />
-            </div>
- 
-          </Carousel>
-      )
+  renderCodeWindow(input, textValue) {
+    if (input === 'icon-folder') {
+      return this.renderProjectList();
     } else {
-      return null;
+      return this.renderEditor(true, textValue);
     }
   }
 
 
+  renderProjectList() {
+    return (
+      <div className="gallery">
+        <Cards />
+      </div>
+    )
+  }
   render() {
 
     const { textValue, menuId } = this.state;
-
-    const editor = this.renderEditor(true, textValue);
-    console.log(editor);
-    const slideShow = this.renderSlideShow('icon-folder' === menuId);
+    const codeWindow = this.renderCodeWindow(menuId, textValue,);
+    console.log(window.innerWidth, window.innerHeight);
 
     return (
-      <div className='container container-closed'>
+      <div className='container container-hide-code'>
         <SideBar onMenuChange={this.onMenuChange} />
         <div className="folder"></div>
-        <div className="code project-gallery-flex-wrapper">
-          <div className='code-editor'>
-            {editor}
-          </div>
-          <div className='project-gallery'>
-            {/* {slideShow} */}
-          </div>
+        <div className="code">
+          {codeWindow}
+
         </div>
         <div className="footer">
         </div>
