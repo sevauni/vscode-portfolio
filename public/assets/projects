@@ -1,0 +1,32 @@
+[
+        {
+                "projName": "Music App - React",
+                "description": "A fully interactive online music player built with React.",
+                "demoLink": "https://vsevolod.tech/music-app/",
+                "imgLink": "./assets/img (1).png"
+        },
+        {
+                "projName": "CakeBuilder - React",
+                "description": "Cake Builder concept for a small bakery to create customized products to appeal to everyone's taste.",
+                "demoLink": "https://vsevolod.tech/bakery/",
+                "imgLink": "./assets/img (2).png"
+        },
+        {
+                "projName": "PomodoFruits",
+                "description": "This is another implementation of the Pomodoro timer to help focus on work.",
+                "demoLink": "https://vsevolod.tech/orange/",
+                "imgLink": "./assets/img (3).png"
+        },
+        {
+                "projName": "PrimeNumbers",
+                "description": "Overcomplicated service to check for a prime number.",
+                "demoLink": "https://vsevolod.tech/primenumbers/",
+                "imgLink": "./assets/img (4).png"
+        },
+        {
+                "projName": "Clip-Path BadApple",
+                "description": "Play Bad Apple with Clip Path Css Property",
+                "demoLink": "https://vsevolod.tech/clippath-badapple/",
+                "imgLink": "./assets/img (5).png"
+        }
+]

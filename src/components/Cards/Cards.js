@@ -11,12 +11,14 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Button from '@mui/material/Button';
 import CardActions from '@mui/material/CardActions';
 
-import { Description } from '@mui/icons-material';
+
+import LoaderService from '../LoadService/LoadService'
+
 
 
 const darkTheme = createTheme({
     palette: {
-        mode: 'dark',
+        mode: 'dark'
     },
 });
 
@@ -24,47 +26,43 @@ const darkTheme = createTheme({
 
 class Cards extends Component {
 
+    state = {
+        infoLoaded: false,
+        projects: []
+    };
 
-    projects = [
-        {
-            description: 'TestDescription',
-            projName: 'TestName',
-            demoLink: 'https://yandex.ru',
-            imgLink: './assets/img (1).png'
-        },
-        {
-            description: 'TestDescription',
-            projName: 'TestName',
-            demoLink: 'https://yandex.ru',
-            imgLink: './assets/img (1).png'
-        },
-        {
-            description: 'TestDescription',
-            projName: 'TestName',
-            demoLink: 'https://yandex.ru',
-            imgLink: './assets/img (1).png'
-        },
-        {
-            description: 'TestDescription',
-            projName: 'TestName',
-            demoLink: 'https://yandex.ru',
-            imgLink: './assets/img (1).png'
-        },
+    loaderService = new LoaderService('http://localhost:3000/assets/');
+
+    componentDidMount() {
+
+        if (this.state.infoLoaded === false) {
+            this.loaderService.getInfo('projects')
+                .then(result => {
+                    this.setState(
+                        {
+                            infoLoaded: true,
+                            projects: result
+                        }
+                    );
+                })
+                .catch();
+
+        }
+    }
 
 
-    ];
 
     renderCards = (input) => {
 
         return input.map((item, index) => {
             return (
-                <Card key={index} sx={{ maxWidth: 345 }}>
+                <Card className='project-cards' key={index} sx={{ maxWidth: 345 }}>
                     <CardActionArea>
                         <CardMedia
                             component="img"
                             height="120"
-                            image='./assets/img%20(2).png'
-                            alt="green iguana"
+                            image={item.imgLink}
+                            alt={'project preview' + item.projName}
                         />
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="div">
@@ -76,7 +74,7 @@ class Cards extends Component {
                         </CardContent>
                     </CardActionArea>
                     <CardActions>
-                        <Button size="small">Demo Link</Button>
+                        <Button onClick={e => { window.open(item.demoLink) }} size="small">Demo Link</Button>
                     </CardActions>
                 </Card>
             )
@@ -86,7 +84,7 @@ class Cards extends Component {
 
 
     render() {
-        const cards = this.renderCards(this.projects);
+        const cards = this.renderCards(this.state.projects);
         return (
 
             <ThemeProvider theme={darkTheme}>

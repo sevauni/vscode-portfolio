@@ -1,5 +1,21 @@
 import React, { Component } from 'react';
 import './SideBar.scss'
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import Zoom from '@mui/material/Zoom';
+import { styled } from '@mui/material/styles';
+
+
+const CustomTip = styled(({ className, ...props }) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+))(({ theme }) => ({
+    [`& .${tooltipClasses.tooltip}`]: {
+        fontSize: theme.typography.pxToRem(14),
+        letterSpacing: '0.1rem'
+    },
+}));
+
+
+
 
 class SideBar extends Component {
     state = {
@@ -14,6 +30,17 @@ class SideBar extends Component {
         'icon-linkedin',
         ' ',
         'icon-refresh'
+    ];
+
+
+    iconsSetDescription = [
+        'Main Page',
+        'My Projects',
+        'Contacts',
+        'Github  Page',
+        'LinkedIn  Profile',
+        ' ',
+        'Refresh this page'
     ];
 
 
@@ -45,17 +72,25 @@ class SideBar extends Component {
 
 
     rebuildSideBarIcons() {
-        return this.iconsSet.map(item => {
+        return this.iconsSet.map((item, index) => {
             const buttonClass = item === this.state.selectedMenuItem
                 ? `${item}  sidebar-icons sidebar-icon-selected`
                 : `${item}  sidebar-icons`;
 
             return (
-                <span
-                    onClick={this.onChangeSelect}
-                    key={item}
-                    className={buttonClass} >
-                </span >
+                <CustomTip
+                    title={this.iconsSetDescription[index]}
+                    arrow placement="right"
+                    TransitionComponent={Zoom}
+                    key={'decr' + item}
+                >
+                    <span
+                        onClick={this.onChangeSelect}
+                        key={item}
+                        className={buttonClass} >
+                    </span >
+                </CustomTip>
+
             )
         }
         );

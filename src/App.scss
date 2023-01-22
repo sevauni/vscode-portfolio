@@ -1,7 +1,7 @@
 .container {
   display: grid;
   height: 100vh;
-  grid-template-rows: 1fr  minmax(20px, 3%);
+  grid-template-rows: 1fr minmax(20px, 3%);
   grid-template-columns: minmax(60px, 4rem) minmax(60px, 15rem) 4fr;
   grid-template-areas:
     "sidebar code code"
@@ -29,6 +29,7 @@
 .code {
   grid-area: code;
   background-color: #1e1e1e;
+  overflow: auto;
 }
 
 .gallery {
@@ -36,7 +37,40 @@
   background-color: #1e1e1e;
   display: flex;
   align-items: center;
-  justify-content:space-around;
+  justify-content: space-around;
   gap: 2rem;
   flex-wrap: wrap;
+}
+
+.footer-icons-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+
+  & span {
+    display: inline-block;
+    margin: 0 2px;
+    //margin-left: 10px;
+    //font-size: 1rem;
+  }
+
+
+  & span:first-child {
+    margin-left: 3rem;
+
+  }
+
+  & span:last-child {
+    margin-right: 1rem;
+  }
+
+}
+
+
+.footer-numbers {
+  font-size: 0.8rem;
+}
+
+.footer-spacer{
+  flex: 1 0 2vw;
 }

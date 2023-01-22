@@ -11,8 +11,6 @@ import code from './components/Code/Code';
 import Cards from './components/Cards/Cards'
 import ReactLoading from 'react-loading';
 
-import { useRef } from 'react';
-import { width } from '@mui/system';
 
 
 
@@ -21,8 +19,13 @@ class App extends Component {
   state = {
     textValue: 'main',
     menuId: 'icon-code',
-    width: window.innerWidth,
+    width: window.innerWidth
   }
+
+
+
+
+
 
   onMenuChange = (id) => {
 
@@ -73,24 +76,6 @@ class App extends Component {
     }
   }
 
-  renderCodeWindow(input, textValue,width) {
-    if (input === 'icon-folder') {
-      return this.renderProjectList();
-    } else {
-      return this.renderEditor(true, textValue,width);
-    }
-  }
-
-  updateDimensions = () => {
-    this.setState({ width: window.innerWidth });
-  };
-
-  componentDidMount() {
-    window.addEventListener('resize', this.updateDimensions);
-  }
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDimensions);
-  }
   renderProjectList() {
     return (
       <div className="gallery">
@@ -98,10 +83,30 @@ class App extends Component {
       </div>
     )
   }
+
+  renderCodeWindow(input, textValue, width) {
+    if (input === 'icon-folder') {
+      return this.renderProjectList();
+    } else {
+      return this.renderEditor(true, textValue, width);
+    }
+  }
+
+  updateDimensions = () => {
+    this.setState({ width: window.innerWidth });
+  };
+  componentDidMount() {
+    window.addEventListener('resize', this.updateDimensions);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimensions);
+  }
+
+
   render() {
 
     const { textValue, menuId, width } = this.state;
-    const codeWindow = this.renderCodeWindow(menuId, textValue,width);
+    const codeWindow = this.renderCodeWindow(menuId, textValue, width);
 
     return (
       <div className='container container-hide-code'>
@@ -110,7 +115,14 @@ class App extends Component {
         <div className="code">
           {codeWindow}
         </div>
-        <div className="footer">
+        <div className="footer footer-icons-wrapper">
+          
+          <span className="icon-error "></span>
+          <span className='footer-numbers '>0</span>
+          <span className="icon-warning "></span>
+          <span className='footer-numbers '>35</span>
+          <span className='footer-spacer' ></span>
+          <span className="icon-notification"></span>
         </div>
       </div>
     );
