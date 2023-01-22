@@ -56,6 +56,11 @@ https://github.com/sevauni
 This Website:
 https://vsevolod.tech
 `
+const projectMain = `
+This is general description of the project
+`
+
+
 
 
 if(textType === 'about'){
@@ -65,6 +70,11 @@ if(textType === 'about'){
 if(textType === 'main'){
     return main;
 }
+
+if(textType === 'proj'){
+    return projectMain;
+}
+
     
 };
 

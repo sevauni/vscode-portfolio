@@ -5,25 +5,15 @@ import React, { Component } from 'react';
 import Editor from "@monaco-editor/react";
 import code from './components/Code/Code';
 
-import ImageGallery from 'react-image-gallery';
+import Carousel from 'nuka-carousel';
 
-const images = [
-  {
-    original: 'https://picsum.photos/id/1018/1000/600/',
-    thumbnail: 'https://picsum.photos/id/1018/250/150/',
 
-  },
-  {
-    original: 'https://picsum.photos/id/1015/1000/600/',
-    thumbnail: 'https://picsum.photos/id/1015/250/150/',
+import slideImg1 from './imgs/img (1).png'
+import slideImg2 from './imgs/img (2).png'
+import slideImg3 from './imgs/img (3).png'
+import slideImg4 from './imgs/img (4).png'
 
-  },
-  {
-    original: 'https://picsum.photos/id/1019/1000/600/',
-    thumbnail: 'https://picsum.photos/id/1019/250/150/',
 
-  },
-];
 
 
 class App extends Component {
@@ -31,7 +21,6 @@ class App extends Component {
   state = {
     textValue: 'main',
     menuId: 'icon-code',
-    showEditor: true
   }
 
   onMenuChange = (id) => {
@@ -42,19 +31,19 @@ class App extends Component {
       this.setState({
         textValue: 'main',
         menuId: id,
-        showEditor: true
+
       });
     }
     if (id === 'icon-contacts') {
       this.setState({
         textValue: 'about',
         menuId: id,
-        showEditor: true
+
       });
     }
     if (id === 'icon-folder') {
       this.setState({
-        showEditor: false,
+        textValue: 'proj',
         menuId: id
       });
     }
@@ -67,9 +56,9 @@ class App extends Component {
       const textCode = code(text);
       return (
         <Editor
-          height="100%"
+          height='100%'
           width="100%"
-          options={{wordWrap: 'on'}}
+          options={{ wordWrap: 'on' }}
           loading="Loading Code Editor" //крутая анимация
           theme="vs-dark"
           value={textCode}
@@ -84,11 +73,23 @@ class App extends Component {
   }
 
   renderSlideShow(shouldRender) {
-    if (!shouldRender) {
+    if (shouldRender) {
       return (
-        <div className='height'>
-          <ImageGallery items={images} />
-        </div>
+          <Carousel className='project-gallery-elem' cellAlign='center'>
+            <div>
+            <img src={slideImg1} alt="t" height='200px' />
+            </div>
+            <div>
+            <img src={slideImg1} alt="t" height='200px' />
+            </div>
+            <div>
+            <img src={slideImg1} alt="t" height='200px' />
+            </div>
+            <div>
+            <img src={slideImg1} alt="t" height='200px' />
+            </div>
+ 
+          </Carousel>
       )
     } else {
       return null;
@@ -98,27 +99,26 @@ class App extends Component {
 
   render() {
 
-    const { textValue, showEditor } = this.state;
+    const { textValue, menuId } = this.state;
 
+    const editor = this.renderEditor(true, textValue);
+    console.log(editor);
+    const slideShow = this.renderSlideShow('icon-folder' === menuId);
 
-    const editor = this.renderEditor(showEditor, textValue);
-    const slideShow = this.renderSlideShow(showEditor);
     return (
       <div className='container container-closed'>
         <SideBar onMenuChange={this.onMenuChange} />
         <div className="folder"></div>
-        <div className="code">
-          {editor}
-          {slideShow}
+        <div className="code project-gallery-flex-wrapper">
+          <div className='code-editor'>
+            {editor}
+          </div>
+          <div className='project-gallery'>
+            {/* {slideShow} */}
+          </div>
         </div>
         <div className="footer">
-          <a href="ya.ru" className='a-no-style'>
-            <span className="icon-refresh">
-            </span>
-          </a>
         </div>
-
-
       </div>
     );
   };
