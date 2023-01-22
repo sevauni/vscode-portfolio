@@ -23,7 +23,7 @@
     "react-loading": "^2.0.3",
     "react-masonry": "^1.0.5",
     "react-scripts": "5.0.1",
-    "styled-components": "^5.3.6",
+    "styled-components": "^5.3.6"
 
   },
   "scripts": {
