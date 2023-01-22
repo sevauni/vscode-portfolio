@@ -8,13 +8,7 @@
     "footer footer footer";
 }
 
-// .container-hide-code {
-//   grid-template-areas:
-//     "sidebar gallery gallery"
-//     "footer footer footer";
-// }
 
-//grid-template-columns: minmax(100px, 1fr);
 
 .footer {
   grid-area: footer;
@@ -63,9 +57,7 @@
   & span:last-child {
     margin-right: 2rem;
   }
-
 }
-
 
 .footer-numbers {
   font-size: 0.8rem;

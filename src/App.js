@@ -94,10 +94,12 @@ class App extends Component {
 
   updateDimensions = () => {
     this.setState({ width: window.innerWidth });
-  };
+  }
+
   componentDidMount() {
     window.addEventListener('resize', this.updateDimensions);
   }
+
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateDimensions);
   }
@@ -116,7 +118,6 @@ class App extends Component {
           {codeWindow}
         </div>
         <div className="footer footer-icons-wrapper">
-          
           <span className="icon-error "></span>
           <span className='footer-numbers '>0</span>
           <span className="icon-warning "></span>

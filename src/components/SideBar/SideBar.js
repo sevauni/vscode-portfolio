@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+
+
 import './SideBar.scss'
+
+
+//import mui
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import Zoom from '@mui/material/Zoom';
 import { styled } from '@mui/material/styles';
 
-
+//custom styles for tips
 const CustomTip = styled(({ className, ...props }) => (
     <Tooltip {...props} classes={{ popper: className }} />
 ))(({ theme }) => ({
@@ -18,6 +23,7 @@ const CustomTip = styled(({ className, ...props }) => (
 
 
 class SideBar extends Component {
+
     state = {
         selectedMenuItem: 'icon-code'
     }
@@ -32,7 +38,6 @@ class SideBar extends Component {
         'icon-refresh'
     ];
 
-
     iconsSetDescription = [
         'Main Page',
         'My Projects',
@@ -42,7 +47,6 @@ class SideBar extends Component {
         ' ',
         'Refresh this page'
     ];
-
 
     onChangeSelect = (key) => {
         const value = key.target.className.split(" ", 1)[0];
@@ -70,7 +74,6 @@ class SideBar extends Component {
         this.props.onMenuChange(value);
     }
 
-
     rebuildSideBarIcons() {
         return this.iconsSet.map((item, index) => {
             const buttonClass = item === this.state.selectedMenuItem
@@ -97,8 +100,6 @@ class SideBar extends Component {
 
 
     }
-
-
 
     render() {
 
