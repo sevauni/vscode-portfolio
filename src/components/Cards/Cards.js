@@ -35,6 +35,7 @@ class Cards extends Component {
     };
 
     loaderService = new LoaderService('https://vsevolod.tech/assets/');
+    //loaderService = new LoaderService('http://localhost:3000/assets/');
 
     componentDidMount() {
         if (this.state.infoLoaded === false) {
@@ -57,6 +58,7 @@ class Cards extends Component {
                 <Card className='project-cards' key={index} sx={{ maxWidth: 345 }}>
                     <CardActionArea>
                         <CardMedia
+                            onClick={e => { window.open(item.demoLink) }}
                             component="img"
                             height="120"
                             image={item.imgLink}
