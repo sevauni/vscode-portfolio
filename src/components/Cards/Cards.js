@@ -34,7 +34,7 @@ class Cards extends Component {
         projects: []
     };
 
-    loaderService = new LoaderService('http://localhost:3000/assets/');
+    loaderService = new LoaderService('https://vsevolod.tech/assets/');
 
     componentDidMount() {
         if (this.state.infoLoaded === false) {

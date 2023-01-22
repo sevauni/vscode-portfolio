@@ -121,7 +121,7 @@ class App extends Component {
           <span className="icon-error "></span>
           <span className='footer-numbers '>0</span>
           <span className="icon-warning "></span>
-          <span className='footer-numbers '>35</span>
+          <span className='footer-numbers '>Looks great!</span>
           <span className='footer-spacer' ></span>
           <span className="icon-notification"></span>
         </div>
